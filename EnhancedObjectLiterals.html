@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Object Literals</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+    <script>
+        // Enhanced Object Literals là gì? 
+        // Dịch ra tiếng Việt là "Kí tự đối tượng nâng cao"
+        // Nó được sử dụng để:
+        // Định nghĩa key: value cho object
+        // Định nghĩa method cho object
+        // Địa nghĩa key cho object dưới dạng biến
+
+
+        // Với việc đặt tên biến giống tên key 
+        var name = "javascript";
+        var price = 1000;
+        var course = {
+            name: name, // viết ngắn gọn thay thế cho: name: name, price: price
+            price: price, 
+            getName: function() {
+                return name;
+            },
+        }
+        console.log(course)
+
+        // Ta có thể việt object trên ngắn gọn như sau 
+        // Bỏ đi value khi value là biến có tên giống key
+        // nếu value là 1 function(method) thì viết ngắn gọn như bên dưới
+        var courses = {
+            name,
+            price,
+            getName() {
+                return name;
+            } // Viết ngắn gọn khi value là 1 function
+        }
+        
+        // Ví dụ khác: 
+
+        var fieldName = "name"; // Biến ở đây thể hiện là một key
+        var fieldPrice = "price";
+
+        // Khi đó ta có thể viết tên key lấy nội dung của biến như sau
+        const courseNew = {
+            [fieldName]: 'javascript',
+            [fieldPrice]: 1000
+        }
+        console.log(courseNew);
+    </script>
+</html>

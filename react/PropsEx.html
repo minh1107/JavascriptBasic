@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+    <script type="text/babel">
+
+        // Props là gì
+        // - React elements
+        // Sử dụng props giống như attribute của thẻ html
+        // 2 Props class, for => className và htmlFor
+        // - React components
+        // + Sử dụng props giống như đối số cho Function
+        // + Tự do đặt tên * Có thể có dấu gạch ngang hoặc có thể đặt theo dang camelCase
+        // - Chú ý: 
+        // Props key là 1 dạng props đặt biệt
+        // Props cơ bản là đối số của Components => Props có thể là bất cứ kiểu dữ liệu gì
+        // Sử dụng destructuring
+
+        //  Ví dụ về props
+        function PostItem({course, onClick}) {
+            // console.log(course.key)
+            return (
+                <div className="post-item">
+                    <div>
+                        <input type="text" id = "input-type" />
+                        <label htmlFor="input-type">Input</label>    
+                    </div>
+                    <img src={course.srcImg} alt={course.altImg} />
+                    <h2 className="post-title" onClick = {() => onClick(course)}>{course.postTitle}</h2>
+                    <p className="post-desc">{course.postDesc}</p>
+                    <p className="post-published">{course.postPublic}</p>    
+                </div>
+            )
+        }
+
+        const Api = [
+            {
+                srcImg: "https://i.pinimg.com/236x/f9/38/72/f938728768ca3ffac942b65f826f7a6b.jpg",
+                altImg: "image Songoku",
+                postTitle: "Ảnh sôn go ku siêu đẹp",
+                postDesc: "Đây là bức ảnh goku trạng thái vô cực",
+                postPublic: "08-08-2022"
+            },
+            {
+                srcImg: "https://i.pinimg.com/236x/40/05/69/4005696cedd164f784fae09874cc6dc6.jpg",
+                altImg: "image Songoku",
+                postTitle: "Ảnh sôn go ku siêu đẹp",
+                postDesc: "Đây là bức ảnh goku trạng thái vô cực",
+                postPublic: "08-08-2022"
+            },
+            {
+                srcImg: "https://i.pinimg.com/236x/f9/38/72/f938728768ca3ffac942b65f826f7a6b.jpg",
+                altImg: "image Songoku hay",
+                postTitle: "Ảnh sôn go ku siêu đẹp nha",
+                postDesc: "Đây là bức ảnh goku trạng thái vô cực",
+                postPublic: "08-08-2022"
+            }
+        ]
+
+        function App() {
+            const handelClick = (course) => {
+                console.log(course.postTitle)
+            }   
+            return (
+                <div id="wrapper">
+                   {
+                    Api.map((course) => (
+                        <PostItem 
+                        // srcImg = {course.srcImg}
+                        // altImg = {course.srcImg}
+                        // postTitle = {course.postTitle}
+                        // postDesc = {course.postDesc}
+                        // postPublic = {course.postPublic}
+                        course = {course} // truyền thẳng sang
+                        onClick = {handelClick}
+                        />
+                    ))
+                   }
+                </div>
+            )
+        }
+        
+        // index.js
+        ReactDOM.render(<App />, document.getElementById("root")) 
+    </script>
+</html>

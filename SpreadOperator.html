@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpreadOperator</title>
+</head>
+<body>
+
+</body>
+    <script>
+        // Nối mảng với spread
+        var array = ['java', 'javascript']
+        var array2 = ['php', 'ruby']
+        var array3 = [];
+        array3 = [...array, ...array2];
+        console.log(array3);
+        // Nối Object
+        var object = {
+            name: 'SpreadOperator',
+            age: 20,
+            sex: 'male',
+        }
+        var object2 = {
+            height: '170cm',
+            weight: '60kg'
+        }
+        var object3 = {...object, ...object2}
+        console.log(object3)   
+        
+        var object4 = {
+            ...object,
+            sex: 'female'
+        }
+        console.log(object4);
+
+        var array3 = ['java', 'javascript', 'ruby'];
+
+        function logger(...rest) { // rest: sử dụng với destructuring để truyên tham số
+            for (let index = 0; index < rest.length; index++) {
+                console.log(rest[index]); 
+            }
+        }
+        logger(...array3) // spread: Truyền đối, số giải nó trong 1 cái array hay object khác thì là spread
+    </script>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <title>Document</title>
+    <style>
+        .heading {
+            color: black;
+            border: 1px solid #ccc;
+            background-color: aqua;
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px #ccc;
+            margin-left: 50%;
+            text-decoration: none;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    const Input = {
+        InputNormal() {
+            return (
+                <input type="text" />
+            )
+        },
+        InputCheckBox() {
+            return (
+                <input type="checkbox" name="width" id="" />
+            )
+        }
+    }
+
+    const App = () => {
+        // Làm hơi thủ công
+        // return (
+        //     <Input.InputNormal /> // Các 1 
+        // )
+        // Cải tiến hơn
+        const type = 'InputNormal'
+        const typeCheckBox = 'InputCheckBox'
+        const Component = Input[typeCheckBox]
+        return (
+            <Component />
+        )
+
+    }
+
+    // const click = () => {
+    //     console.log(hello)
+    // }
+    // const objectEx = {}
+    // objectEx.clicks = click;
+    // const array = [1,2]
+    // console.log(typeof Object.keys(objectEx));
+
+    // Ví dụ khác khó hơn về component
+    const Button = ({ title, href, onClick, className }) => {
+        var Component = 'button'
+        const someThing = { className: className };
+        if (href) {
+            someThing.href = href
+            Component = 'a'
+        }
+        if (onClick) {
+            someThing.onClick = onClick
+        }
+        return (
+            <Component {...someThing}>{title}</Component>
+        )
+    }
+
+    const App1 = () => {
+        return (
+            <div className="wrapper">
+                <Button
+                    className="heading"
+                    title='click me'
+                    href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys'
+                    onClick={() => {
+                        console.log(Math.random() * 10)
+                    }}
+                />
+            </div>
+        )
+    }
+
+    const AnyThing = ({ title }) => {
+
+        return (
+            <div>{title || content}</div>
+        )
+    }
+
+    // 1 ví dụ khác
+    const App2 = () => {
+        let hello = 'hi I minh'
+        let boolEx = false
+        let helloNam = 'hi bo may ten nam'
+        return (
+            <div class="wrapper">
+                <AnyThing
+                    title={helloNam || hello}
+                    content={helloNam}
+                />
+            </div>
+        )
+    }
+
+
+    ReactDOM.render(<App1 />, document.getElementById("root"))
+
+</script>
+
+</html>

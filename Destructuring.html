@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destructuring</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+    <script>
+        // Destructuring là gì?
+        // Dịch ra là phân rã
+        // Sử dụng với object và array
+        
+        // Example
+        var array = ['javascript', 'PHP', 'Ruby'];
+        var a = array[0];
+        var b = array[1];
+        var c = array[2];
+        console.log(a, b, c);
+        
+        // Có thể viết như sau sử dụng destructuring
+        var [a, b, c] = array;
+        console.log(a, b ,c); // Kết quả giống như trên
+        
+        // Với toán tử rest: lấy ra các giá trị với còn lại của array
+        // Rest là khi sử dung với Destructuring
+        var [a, b, ...rest]  = array // với rest bạn viết như nào cũng được nó chỉ là tên biến
+        console.log(a); // lấy ra phần tử đầu tiên
+        console.log(rest); // lấy ra các giá trị còn lại dưới dạng array
+        
+        // Với object
+        var courses = {
+            name: 'javascript',
+            price: 1000,
+            image: 'image-address',
+            newName: {
+                name: 'php',
+            },
+            time: '1000h' 
+        }
+        
+        var {name, price} = courses; // Phải ghi đúng key thì mới lấy được giá trị
+        console.log(name, price); // Log ra value của key name và price
+        var {name, ...rest} = courses; // In ra các giá trị còn lại dưới dạng object giống như ví dụ array trên
+        console.log(rest); // Log ra Object còn lại
+        // Với tên key trùng nhau
+        var {name, newName: {name}} = courses; // khi này thì newname sẽ bị trùng tên key với name nên ta có thể viết lại như sau
+        var {name: nameParent, newName: {name: nameChild}} = courses // khi này ta có thể đổi tên các key trùng nhau như vậy
+        console.log(nameParent, nameChild); // khi gán tên mới không nên viết hoa chữ cái đầu
+        // Ta có thể gán value cho 1 key chưa được định nghĩa để tạo ra 1 key:value mới
+        var {description= 'new description'} = courses // tạo ra 1 key:value mới trong courses object
+        console.log(description);
+        // nếu đã tồn tại key đó thì sẽ lấy key:value trong object 
+        // Example
+        var {time = "2000h"} = courses // khi này nó vẫn lấy giá trị và 1000h
+        console.log(time);
+
+        // example rest
+        function logger( ...params){
+            console.log(params);
+            // console.log(a);
+        }
+
+        logger({name: 'logger', description: 'beautiful'}); // trả về 1 array chứa object
+        logger(1,2,3,4,5,6,7,8); // trả về 1 array
+    </script>
+</html>

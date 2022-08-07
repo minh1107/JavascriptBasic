@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <title>document.CreateElement</title>
+</head>
+<body>
+    <!-- 
+        1. document.createElement();
+        2. document.body.appendChild()
+        3. console.dir()
+        4. innerText, id, classRoom, style
+     -->
+     <div id="root"></div>
+     <div id="heading"></div>
+</body>
+<script>
+    const h1 = document.createElement("h1") // tạo thẻ h1 gán váo biến h1
+    h1.innerHTML = "Hello guy"; // Thêm nội dung vào thẻ h1 vừa được tạo
+    console.log(h1); // log ra bên console
+    h1.id = "heading"
+    h1.className = "test"
+    // h1.style = "color: red; font-weight: bold; font-size: 60px";
+    // bạn cũng có thể thêm style như sau
+    Object.assign(h1.style, {
+        color: 'red',
+        backgroundColor: 'blue',
+    })
+    document.body.appendChild(h1); // append child là thêm thằng con vào ở đây là biến h1 chứa nội dụng được thêm vào như trên để hiển thị
+    // ra trong body.
+
+    // Sử dụng React.createElement
+    /*
+       ta có các thành phần trong phương thức React.createElement như sau
+       React.createElement(
+        <Tag cần tạo - ví dụ h1, p, div>,
+       { <Nội dung các attribute bao quanh bởi cặp ngoặc nhọn>},
+        <Nội dung text chứa trong tag đã tạo>
+       ) 
+       React.createElement(type,props,children);
+    */
+   // Ta có một số ví dụ sau
+   const h1React = React.createElement('ul', 
+            {
+                title: 'hello guy',
+                className: 'heading',
+            },
+            "This is tag create by React.createElement"
+   )
+
+
+   const ulReact = React.createElement('ul',
+   null,
+   React.createElement('li', null, 'javascript', React.createElement('p', null, 'nice to meet you')),
+   React.createElement('li', null, 'PHP')
+   )
+
+   const root = document.getElementById('root')
+   ReactDOM.render(ulReact, root);
+
+    //example
+    const post = React.createElement('div', {
+        className: 'post-item',
+    }, React.createElement('h2', {title: 'Hoc React tai f8'}, 'Hoc ReactJS'),
+    React.createElement('p', null, 'Hoc React tu co ban den nang cao')
+    )
+    const heading = document.getElementById('heading');
+    ReactDOM.render(post, heading)
+</script>
+</html>
